@@ -16,9 +16,9 @@ setup(name='amcp',
     'Topic :: Molecular Mechanics :: Docking :: Machine Learning :: Conformal Predictor :: ML Classifier',
     ],
     keywords='docking, amcp, classifier',
-    url='https://github.com/Isra3l/amcp.git',
+    url='https://github.com/carlssonlab/conformalpredictor.git',
     author='Israel Cabeza de Vaca Lopez, Leonard Sparring, Andreas Luttens, Ulf Norinder',
-    author_email='israel.cabezadevaca@icm.uu.se','andreas.luttens@gmail.com'
+    author_email='israel.cabezadevaca@icm.uu.se, andreas.luttens@gmail.com',
     license='MIT',
     packages=find_packages(),
     install_requires=[
