@@ -24,8 +24,8 @@ current repository:
 This is an example for how to set up a working conda environment to run the code:
 
     conda env create -f conformalpredictor/environment.yml
-    conda activate amcp
-    pip install -e amcp
+    conda activate conformalpredictor
+    pip install -e conformalpredictor
 
 # Usage
 
