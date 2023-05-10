@@ -19,11 +19,11 @@ If you want to train your own models with the provided data, then please downloa
 We will set up the environment using [Anaconda](https://docs.anaconda.com/anaconda/install/index.html). Clone the
 current repository:
 
-    git clone https://github.com/Isra3l/amcp.git
+    git clone git@github.com:Carlssonlab/conformalpredictor.git
 
 This is an example for how to set up a working conda environment to run the code:
 
-    conda env create -f amcp/environment.yml
+    conda env create -f conformalpredictor/environment.yml
     conda activate amcp
     pip install -e amcp
 
