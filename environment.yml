@@ -1,0 +1,27 @@
+name: amcp
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.8
+  - pandas
+  - tqdm
+  - cpuonly
+  - pytorch
+  - transformers
+  - scipy
+  - scikit-learn
+  - requests
+  - tensorboardx
+  - keras
+  - numpy
+  - pip
+  - catboost
+  - pip:
+      - seqeval
+      - simpletransformers
+      - rdkit-pypi
+      - skorch
