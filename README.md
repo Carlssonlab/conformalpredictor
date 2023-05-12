@@ -213,7 +213,7 @@ If you use this method in your research, please cite our work as follows:
           title={Rapid traversal of ultralarge chemical space using machine learning guided docking screens}, 
           url={https://chemrxiv.org/engage/chemrxiv/article-details/6456778807c3f02937503688}, 
           journal={ChemRxiv}, 
-          author={Luttens, Andreas and Vaca, Israel Cabeza de and Sparring, Leonard and Norinder, Ulf and Carlsson, Jens}, 
+          author={Luttens, Andreas and Cabeza de Vaca, Israel and Sparring, Leonard and Norinder, Ulf and Carlsson, Jens}, 
           year={2023}, 
           month={May}} 
 
