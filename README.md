@@ -19,6 +19,10 @@ If you want to train your own models with the provided data, then please downloa
 We will set up the environment using [Anaconda](https://docs.anaconda.com/anaconda/install/index.html). Clone the
 current repository:
 
+    git clone https://github.com/Carlssonlab/conformalpredictor.git
+    
+or
+
     git clone git@github.com:Carlssonlab/conformalpredictor.git
 
 This is an example for how to set up a working conda environment to run the code:
