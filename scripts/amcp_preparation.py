@@ -252,7 +252,8 @@ def processChunk(args: argparse,thredsHold_score_actives: float, linesPerChunk: 
     df_chunk = generateFingerPrint(df_chunk, args.radius, args.sizeBits, args.bert)
 
     if not args.prediction:
-
+        
+        df_chunk['molID'] = df_chunk['molID'].astype(str)
         df_chunk['molID'] = df_chunk.apply(lambda x: x.molID+'_'+str(x.scores), axis=1)
         df_chunk['class'] = np.where(df_chunk['scores'] < thredsHold_score_actives , 1, 0)
 

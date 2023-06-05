@@ -181,4 +181,4 @@ def parseAMCPDataTraining(args):
 
         logger.info(f'Processed {idx} M molecules')
 
-    return X, y
+    return X, y.reshape(-1,1)
