@@ -17,12 +17,23 @@ def plotValidationResults(inputfile: str) -> None:
 
     df_summary = pd.read_csv(inputfile, delim_whitespace=True)
 
-    plotSignificancesVsRelativeSetDistribution(inputfile, df_summary)
+    plotSignificancesVsRelativeSetDistribution(inputfile, df_summary, latex=False)
 
-    plotSignificancesVsErrorRate(inputfile, df_summary)
+    plotSignificancesVsErrorRate(inputfile, df_summary, latex=False)
+
+    try:
+
+        plotSignificancesVsRelativeSetDistribution(inputfile, df_summary, latex=True)
+
+        plotSignificancesVsErrorRate(inputfile, df_summary, latex=True)
+
+    except RuntimeError as e:
+
+        logger.warning(e)
+        logger.warning('Plots will use a basic (no symbols) style')
 
 
-def plotSignificancesVsErrorRate(inputfile: str, df: pd.DataFrame) -> None:
+def plotSignificancesVsErrorRate(inputfile: str, df: pd.DataFrame, latex: bool) -> None:
     """Generate significance VS ErrorRate plot
 
     Args:
@@ -37,11 +48,16 @@ def plotSignificancesVsErrorRate(inputfile: str, df: pd.DataFrame) -> None:
 
     pt.clf()
     pt.style.use('seaborn-white')
-    pt.rc("text", usetex=True)
+
+
+    if latex: pt.rc("text", usetex=True)
+
     fig, ax = pt.subplots(figsize=(10,10))
 
     pt.ylabel("Error rate", fontweight='bold',fontsize=46)
-    pt.xlabel(r'significance ($\varepsilon$)', fontweight='bold',fontsize=46)
+
+    pt.xlabel(r'significance (Epsilon)', fontweight='bold',fontsize=46)
+    if latex: pt.xlabel(r'significance ($\varepsilon$)', fontweight='bold',fontsize=46)
 
     pt.xticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0], [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],fontsize=36)
     pt.yticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0],[0.0, 0.2, 0.4, 0.6, 0.8, 1.0],fontsize=36)
@@ -60,7 +76,7 @@ def plotSignificancesVsErrorRate(inputfile: str, df: pd.DataFrame) -> None:
     fig.savefig(outputfile, bbox_inches='tight', dpi=300, transparent=False)
 
 
-def plotSignificancesVsRelativeSetDistribution(inputfile: str, df: pd.DataFrame) -> None:
+def plotSignificancesVsRelativeSetDistribution(inputfile: str, df: pd.DataFrame, latex: bool) -> None:
     """Generate significance VS relative set distribution plot
 
     Args:
@@ -85,14 +101,16 @@ def plotSignificancesVsRelativeSetDistribution(inputfile: str, df: pd.DataFrame)
 
     pt.clf()
     pt.style.use('seaborn-white')
-    pt.rc("text", usetex=True)
+    if latex: pt.rc("text", usetex=True)
     fig, ax = pt.subplots(figsize=(10,10))
     
     blue = (0.000000000,0.419607843,1.000000000)
     red = (1.000000000, 0.501960784, 0.000000000)
 
     pt.ylabel("relative set distribution", fontweight='bold',fontsize=46)
-    pt.xlabel(r'significance ($\varepsilon$)', fontweight='bold',fontsize=46)
+
+    pt.xlabel(r'significance (Epsilon)', fontweight='bold',fontsize=46)
+    if latex: pt.xlabel(r'significance ($\varepsilon$)', fontweight='bold',fontsize=46)
 
     pt.xticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0], [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],fontsize=36)
     pt.yticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0],[0.0, 0.2, 0.4, 0.6, 0.8, 1.0],fontsize=36)
@@ -130,7 +148,8 @@ def plotSignificancesVsRelativeSetDistribution(inputfile: str, df: pd.DataFrame)
 
     pt.axvline(x = optimalSignificance, color = 'black', linestyle = '--', linewidth=3)
 
-    pt.text(optimalSignificance, 0.5, r"$\mathbf{\varepsilon_{opt}}$", va="center", ha="center", rotation=90, bbox=dict(facecolor="white",ec="black"), fontsize=30)
+    pt.text(optimalSignificance, 0.5, r"Epsilon", va="center", ha="center", rotation=90, bbox=dict(facecolor="white",ec="black"), fontsize=30)
+    if latex: pt.text(optimalSignificance, 0.5, r"$\mathbf{\varepsilon_{opt}}$", va="center", ha="center", rotation=90, bbox=dict(facecolor="white",ec="black"), fontsize=30)
 
     pt.ylim((0,1))
     pt.xlim((0,1))
@@ -142,6 +161,22 @@ def plotSignificancesVsRelativeSetDistribution(inputfile: str, df: pd.DataFrame)
     handles = [copy.copy(ha) for ha in handles ]
     [ha.set_linewidth(7) for ha in handles ]
 
+    # print('aaa')
+
+    # try:
+
     fig.savefig(outputfile, bbox_inches='tight', dpi=300, transparent=False)
 
+    # except RuntimeError as e:
+
+        # logger.warning(e)
+        # pt.text(optimalSignificance, 0.5, r"Epsilon", va="center", ha="center", rotation=90, bbox=dict(facecolor="white",ec="black"), fontsize=30)
+        # pt.xlabel(r'significance (Epsilon)', fontweight='bold',fontsize=46)
+        # fig.savefig(outputfile, bbox_inches='tight', dpi=300, transparent=False)
+
+
+
+    # print('aaa')
+
+    # exit()
     
