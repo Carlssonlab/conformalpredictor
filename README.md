@@ -31,7 +31,7 @@ This is an example for how to set up a working conda environment to run the code
     conda activate amcp
     pip install -e conformalpredictor
 
-Typical installation times range from 5 - 30 minutes. The software has been tested on MacOS 13.1 Ventura and Rocky Linux 9. 
+Typical installation times range from 5 - 30 minutes. The software has been tested on MacOS 13.1 Ventura, CentOS 7, and Rocky Linux 9. 
 
 # Usage
 
