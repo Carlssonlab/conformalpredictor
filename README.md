@@ -31,6 +31,8 @@ This is an example for how to set up a working conda environment to run the code
     conda activate amcp
     pip install -e conformalpredictor
 
+Typical installation times range from 5 - 30 minutes. The software has been tested on MacOS 13.1 Ventura and Rocky Linux 9. 
+
 # Usage
 
 ## **Step 1: Preparation**
@@ -92,7 +94,7 @@ Use the `--help (-h) flag` for more information.
 
 ## **Step 2: Validation of Models**
 
-In order to find the optimal significance (most single-label predictions) and fully benchmark your system, the program can be used in *validation* mode. The inputfile is split into K (default 5) chunks specified by the `(-vf) flag` validationFolds parameter.
+To find the optimal significance (most single-label predictions) and fully benchmark your system, the program can be used in *validation* mode. The input file is split into K (default 5) chunks specified by the `(-vf) flag` validationFolds parameter.
 
 Validation command examples: 
 
