@@ -22,7 +22,7 @@ setup(name='amcp',
     license='MIT',
     packages=find_packages(),
     install_requires=[
-        'markdown', 'pandas', 'numpy', 'scipy', 'sklearn'
+        'markdown', 'pandas', 'numpy', 'scipy', 'scikit-learn'
     ],
     entry_points={
         'console_scripts': ['amcp=amcp.amcp:main', 'amcp_preparation=scripts.amcp_preparation:main', 'amcp_inputFromDock=scripts.amcp_inputFromDock:main'],
