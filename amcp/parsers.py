@@ -37,7 +37,7 @@ def parseAMCPData(args):
         nr_class_set = set([0])
 
         for idx, batch in f_to_iterate:
-
+            print(idx)
             chunk = batch
             if args.parquet: chunk = batch.to_pandas()
 
@@ -57,9 +57,10 @@ def parseAMCPData(args):
                     y_label = np.hstack((y_label, chunk.iloc[:,1].to_numpy(dtype=np.int8)))
 
                 else:
-
-                    training_IDs = np.vstack((training_IDs, chunk.iloc[:,0].to_numpy()))
-                    y_label = np.vstack((y_label, chunk.iloc[:,1].to_numpy(dtype=np.int8)))
+                    print(training_IDs.shape)
+                    print(chunk.iloc[:,0].to_numpy().shape)
+                    training_IDs = np.concatenate((training_IDs, chunk.iloc[:,0].to_numpy()), axis=0)
+                    y_label = np.concatenate((y_label, chunk.iloc[:,1].to_numpy(dtype=np.int8)), axis=0)
 
 
 
@@ -70,9 +71,6 @@ def parseAMCPData(args):
 
             logger.info(f'Processed {idx} M molecules')
 
-            # print(training_IDs.shape)
-            # print(y_label.shape)
-            # print(training_data.shape)
 
         del data
 
