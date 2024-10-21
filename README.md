@@ -33,7 +33,20 @@ This is an example for how to set up a working conda environment to run the code
 
 Typical installation times range from 5 - 30 minutes. The software has been tested on MacOS 13.1 Ventura, CentOS 7, and Rocky Linux 9. 
 
-# Usage
+# A basic example of a regular Conformal Predictor run
+
+Once you have a training file (train_smiles_and_scores.txt) containing three columns (SMILES, moleculeID, and score) without headers, and a test file (test_smiles.txt) containing two columns (SMILES and moleculeID) without headers, you can run the following commands. The value of the optimal significance is estimated for each case during the validation step and is provided in the amcp.log file (INFO Optimal significance: XXX)
+
+```bash
+amcp_preparation -i train_smiles_and_scores.txt -o train_features.txt
+amcp -m validation -i train_features.txt -o validation_result_output.txt
+amcp -m train -i train_features.txt -o train_out.txt
+amcp_preparation -i test_smiles.txt -o test_features.txt -pred
+amcp -m predict -i test_features.txt -o test_prediction_output.txt
+amcp -m analysis -i test_prediction_output.txt -o test_prediction_total.txt -sig 0.15
+```
+
+# Detailed usage
 
 ## **Step 1: Preparation**
 
@@ -211,19 +224,6 @@ Explicit evaluation of molecules with large deltaP values hopefully leads to imp
 <!-- ![AMCP validation figures](/plots/significancesVsRelativeSetDistribution.png "MarineGEO logo") -->
 
 <img src="./plots/ml_distributions.png" width="1000">
-
-# A basic example of a regular Conformal Predictor run
-
-Once you have a training file (train_smiles_and_scores.txt) containing three columns (SMILES, moleculeID, and score) without headers, and a test file (test_smiles.txt) containing two columns (SMILES and moleculeID) without headers, you can run the following commands. The value of the optimal significance is estimated for each case during the validation step and is provided in the amcp.log file (INFO Optimal significance: XXX)
-
-```bash
-amcp_preparation -i train_smiles_and_scores.txt -o train_features.txt
-amcp -m validation -i train_features.txt -o validation_result_output.txt
-amcp -m train -i train_features.txt -o train_out.txt
-amcp_preparation -i test_smiles.txt -o test_features.txt -pred
-amcp -m predict -i test_features.txt -o test_prediction_output.txt
-amcp -m analysis -i test_prediction_output.txt -o test_prediction_total.txt -sig 0.15
-```
 
 The final file test_prediction_total.txt (sampleID, deltaP) contains just the molecules considered virtual actives sorted by their difference in p-values (p1-p0).
 
